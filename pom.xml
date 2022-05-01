@@ -229,6 +229,28 @@
     <dependencies>
 
     </dependencies>
+    <!--配置环境的profile-->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <!--使用${environment}获取值-->
+                <environment>dev</environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <environment>test</environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <environment>prod</environment>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
@@ -242,19 +264,40 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <!-- 打包时剔除配置文件使用外置配置文件 如果不需要可以去掉 -->
+                    &lt;!&ndash; 打包时剔除配置文件使用外置配置文件 如果不需要可以去掉 &ndash;&gt;
                     <excludes>
                         <exclude>application.yml</exclude>
                         <exclude>application-druid.yml</exclude>
                         <exclude>logback.xml</exclude>
                     </excludes>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
+        <resources>
+            <!--排除环境配置文件-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>application-*.yml</exclude>
+                    <exclude>application.yml</exclude>
+                </excludes>
+            </resource>
+
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <!-- 打包时包含的文件 -->
+                <includes>
+                    <!--suppress UnresolvedMavenProperty -->
+                    <include>application-${environment}.yml</include>
+                    <include>application.yml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
     <repositories>
