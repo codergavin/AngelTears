@@ -229,12 +229,13 @@
     <dependencies>
 
     </dependencies>
-    <!--配置环境的profile-->
+    <!--idea配置多环境启动时需要-->
+    <!--&lt;!&ndash;配置环境的profile&ndash;&gt;
     <profiles>
         <profile>
             <id>dev</id>
             <properties>
-                <!--使用${environment}获取值-->
+                &lt;!&ndash;使用${environment}获取值&ndash;&gt;
                 <environment>dev</environment>
             </properties>
         </profile>
@@ -250,7 +251,7 @@
                 <environment>prod</environment>
             </properties>
         </profile>
-    </profiles>
+    </profiles>-->
 
     <build>
         <plugins>
@@ -264,21 +265,23 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-            <!--<plugin>
+            <!--idea配置多环境启动时不需要下面的-->
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    &lt;!&ndash; 打包时剔除配置文件使用外置配置文件 如果不需要可以去掉 &ndash;&gt;
+                    <!-- 打包时剔除配置文件使用外置配置文件 如果不需要可以去掉 -->
                     <excludes>
                         <exclude>application.yml</exclude>
                         <exclude>application-druid.yml</exclude>
                         <exclude>logback.xml</exclude>
                     </excludes>
                 </configuration>
-            </plugin>-->
+            </plugin>
         </plugins>
-        <resources>
-            <!--排除环境配置文件-->
+        <!--idea配置多环境启动时需要-->
+        <!--<resources>
+            &lt;!&ndash;排除环境配置文件&ndash;&gt;
             <resource>
                 <directory>src/main/resources</directory>
                 <excludes>
@@ -290,14 +293,14 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
-                <!-- 打包时包含的文件 -->
+                &lt;!&ndash; 打包时包含的文件 &ndash;&gt;
                 <includes>
-                    <!--suppress UnresolvedMavenProperty -->
+                    &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;
                     <include>application-${environment}.yml</include>
                     <include>application.yml</include>
                 </includes>
             </resource>
-        </resources>
+        </resources>-->
     </build>
 
     <repositories>
