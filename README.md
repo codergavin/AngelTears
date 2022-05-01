@@ -57,11 +57,11 @@
 ## 做功能集成 
 相关文件在：./ruoyi-doc/Integration文件夹下
 
-1、增加Git提交日志规范
+1、增加Git提交日志规范（见文件）
 
-2、集成jasypt加密方式
+2、集成jasypt加密方式（见文件）
 
-
+3、单元测试基础类(BaseControllerTest和BaseServiceTest)
 
 
 
