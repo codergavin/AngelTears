@@ -55,9 +55,11 @@
 文档地址：http://doc.ruoyi.vip
 
 ## 做功能集成 
+相关文件在：./ruoyi-doc/Integration文件夹下
 
 1、增加Git提交日志规范
 
+2、集成jasypt加密方式
 
 
 
