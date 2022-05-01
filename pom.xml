@@ -242,6 +242,18 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <!-- 打包时剔除配置文件使用外置配置文件 如果不需要可以去掉 -->
+                    <excludes>
+                        <exclude>application.yml</exclude>
+                        <exclude>application-druid.yml</exclude>
+                        <exclude>logback.xml</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

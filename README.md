@@ -63,7 +63,8 @@
 
 3、单元测试基础类(BaseControllerTest和BaseServiceTest)
 
-
+4、打包时剔除配置文件（见文件）
+    
 
 
 
