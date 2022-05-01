@@ -211,6 +211,13 @@
                 <version>1.9.3</version>
             </dependency>
 
+            <!--http请求-->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.13</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
@@ -229,6 +236,29 @@
     <dependencies>
 
     </dependencies>
+    <!--idea配置多环境启动时需要-->
+    <!--&lt;!&ndash;配置环境的profile&ndash;&gt;
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                &lt;!&ndash;使用${environment}获取值&ndash;&gt;
+                <environment>dev</environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <environment>test</environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <environment>prod</environment>
+            </properties>
+        </profile>
+    </profiles>-->
 
     <build>
         <plugins>
@@ -242,7 +272,42 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
+            <!--idea配置多环境启动时不需要下面的-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <!-- 打包时剔除配置文件使用外置配置文件 如果不需要可以去掉 -->
+                    <excludes>
+                        <exclude>application.yml</exclude>
+                        <exclude>application-druid.yml</exclude>
+                        <exclude>logback.xml</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
         </plugins>
+        <!--idea配置多环境启动时需要-->
+        <!--<resources>
+            &lt;!&ndash;排除环境配置文件&ndash;&gt;
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>application-*.yml</exclude>
+                    <exclude>application.yml</exclude>
+                </excludes>
+            </resource>
+
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                &lt;!&ndash; 打包时包含的文件 &ndash;&gt;
+                <includes>
+                    &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;
+                    <include>application-${environment}.yml</include>
+                    <include>application.yml</include>
+                </includes>
+            </resource>
+        </resources>-->
     </build>
 
     <repositories>

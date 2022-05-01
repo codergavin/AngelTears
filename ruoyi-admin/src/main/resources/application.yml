@@ -68,8 +68,7 @@ spring:
     # 数据库索引
     database: 0
     # 密码
-#    password: ENC(8MEM/dJrNsAvyoPukHgNzSqK3NWBvooQ)
-    password: 1qazCDE#5tgb
+    password: 
     # 连接超时时间
     timeout: 10s
     lettuce:
@@ -122,11 +121,3 @@ xss:
   excludes: /system/notice
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
-
-
-jasypt:
-  encryptor:
-    algorithm: PBEWithMD5AndDES		#算法-固定写法一般没人改
-    password: angeltear				#密钥
-    iv-generator-classname: org.jasypt.iv.NoIvGenerator	#设置初始向量IV生成器的类名
-
