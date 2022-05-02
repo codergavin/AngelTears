@@ -70,8 +70,10 @@ public class WeChatMsgSend {
     /**
      * corpid应用组织编号 corpsecret应用秘钥 获取toAuth(String   : 企业ID
      * Get_Token_Url)返回结果中键值对中access_token键的值
-     *
-     * @param
+     * @param corpid 企业ID
+     * @param corpsecret 应用的密钥
+     * @return
+     * @throws IOException
      */
     public String getToken(String corpid, String corpsecret) throws IOException {
         WeChatMsgSend sw = new WeChatMsgSend();
@@ -94,7 +96,7 @@ public class WeChatMsgSend {
      *
      * @param touser
      * @param msgtype
-     * @param application_id
+     * @param application_id 应用的AgentId
      * @param contentKey
      * @param contentValue
      * @return

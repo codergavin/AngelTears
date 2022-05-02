@@ -5,6 +5,7 @@ package com.ruoyi.common.utils.msg.wxwork;
  * @group CoderBean
  * @date 2022/1/6 11:43
  * @desc 企业微信管理后台：https://work.weixin.qq.com/wework_admin/frame#apps
+ * 错误码查询：https://open.work.weixin.qq.com/devtool/query?e=81013
  */
 public class WeiChat {
     public static void main(String[] args) {
