@@ -21,7 +21,7 @@ public class JasyptUtils {
         config.setAlgorithm("PBEWithMD5AndDES");          // 加密的算法，这个算法是默认的
         config.setPassword("angeltear");                        // 加密的密钥
         standardPBEStringEncryptor.setConfig(config);
-        String plainText = "1qazCDE#5tgb";
+        String plainText = "root";
         String encryptedText = standardPBEStringEncryptor.encrypt(plainText);
         System.out.println(encryptedText);
     }
