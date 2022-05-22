@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.msg.wxwork;
+package com.ruoyi.common.utils.msg.wxwork.old;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.http.HttpEntity;

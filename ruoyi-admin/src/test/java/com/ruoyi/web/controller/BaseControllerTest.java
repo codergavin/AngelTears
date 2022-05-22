@@ -208,7 +208,7 @@ public class BaseControllerTest {
      */
     protected void baseUploadFile(String requestUrl,String filePath) throws Exception {
         File uploadFile = new File(filePath);
-        String result =  mockMvc.perform(
+        MvcResult mvcResult =  mockMvc.perform(
                         MockMvcRequestBuilders
                                 .multipart(requestUrl)
                                 .file(
@@ -216,8 +216,8 @@ public class BaseControllerTest {
                                                 new FileInputStream(uploadFile))
                                 ).header(Authorization,TOKEN)
                 ).andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
+                .andReturn();
+        printResult(mvcResult);
     }
 
     /**
@@ -230,7 +230,7 @@ public class BaseControllerTest {
      */
     protected void baseUploadFileWithParams(String requestUrl,String filePath,String key,String value) throws Exception {
         File uploadFile = new File(filePath);
-        String result =  mockMvc.perform(
+        MvcResult mvcResult =  mockMvc.perform(
                         MockMvcRequestBuilders
                                 .multipart(requestUrl)
                                 .file(
@@ -238,8 +238,8 @@ public class BaseControllerTest {
                                                 new FileInputStream(uploadFile))
                                 ).param(key,value).header(Authorization,TOKEN)
                 ).andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
+                .andReturn();
+        printResult(mvcResult);
     }
 
     /**
@@ -248,14 +248,14 @@ public class BaseControllerTest {
     protected void baseUploadFileList(String requestUrl,String filePath1,String filePath2) throws Exception {
         File uploadFile1 = new File(filePath1);
         File uploadFile2 = new File(filePath2);
-        String result =  mockMvc.perform(MockMvcRequestBuilders.fileUpload("/personnel/detail/batchUpdateImport")
+        MvcResult mvcResult =  mockMvc.perform(MockMvcRequestBuilders.fileUpload("/personnel/detail/batchUpdateImport")
                 .file(new MockMultipartFile("files", uploadFile1.getName(), ",multipart/form-data",
                         new FileInputStream(uploadFile1))
                 ).file(new MockMultipartFile("files", uploadFile2.getName(), ",multipart/form-data",
                         new FileInputStream(uploadFile2))).header(Authorization,TOKEN)
-        ).andExpect(MockMvcResultMatchers.status().isOk()).andReturn().getResponse().getContentAsString();
+        ).andExpect(MockMvcResultMatchers.status().isOk()).andReturn() ;
 
-        System.out.println(result);
+        printResult(mvcResult);
     }
 
     /**
