@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.msg.wxwork.entity;
+package com.ruoyi.common.utils.msg.wxwork.entity.msg;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +10,7 @@ import java.util.Map;
  * @date 2022/5/21 22:46
  * @desc 文本消息
  */
-public class WxTextMessage extends WxMsgBase {
+public class WxWorkTextMessage extends WxWorkMsgBase {
 
     /**
      * 是否必填：是
@@ -24,9 +24,9 @@ public class WxTextMessage extends WxMsgBase {
     private Integer enable_id_trans = 0;
 
 
-    public WxTextMessage(){}
+    public WxWorkTextMessage(){}
 
-    public WxTextMessage(Integer agentid, String msgtype, String touser, String text){
+    public WxWorkTextMessage(Integer agentid, String msgtype, String touser, String text){
         setAgentid(agentid);
         setMsgtype(msgtype);
         setTouser(touser);

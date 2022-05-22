@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.msg.wxwork.entity;
+package com.ruoyi.common.utils.msg.wxwork.entity.msg;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,19 +10,19 @@ import java.util.Map;
  * @date 2022/5/22 0:06
  * @desc 文本卡片消息
  */
-public class WxTextCardMsg extends WxMsgBase {
+public class WxWorkTextCardMsg extends WxWorkMsgBase {
     private Object textcard;
-    public WxTextCardMsg(){}
+    public WxWorkTextCardMsg(){}
 
-    public WxTextCardMsg(Integer agentid, String msgtype,String touser,Object textcard){
+    public WxWorkTextCardMsg(Integer agentid, String msgtype, String touser, Object textcard){
         setAgentid(agentid);
         setMsgtype(msgtype);
         setTouser(touser);
         this.textcard = textcard;
     }
 
-    public WxTextCardMsg(Integer agentid, String msgtype,String touser,
-                         String title,String description,String url,String btntxt){
+    public WxWorkTextCardMsg(Integer agentid, String msgtype, String touser,
+                             String title, String description, String url, String btntxt){
         setAgentid(agentid);
         setMsgtype(msgtype);
         setTouser(touser);

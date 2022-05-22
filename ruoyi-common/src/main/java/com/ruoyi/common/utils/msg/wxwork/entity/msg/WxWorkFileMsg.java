@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.msg.wxwork.entity;
+package com.ruoyi.common.utils.msg.wxwork.entity.msg;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,11 +10,11 @@ import java.util.Map;
  * @date 2022/5/22 0:06
  * @desc 文件消息
  */
-public class WxFileMsg extends WxMsgBase {
+public class WxWorkFileMsg extends WxWorkMsgBase {
     private Object file;
-    public WxFileMsg(){}
+    public WxWorkFileMsg(){}
 
-    public WxFileMsg(Integer agentid, String msgtype, String touser, String image){
+    public WxWorkFileMsg(Integer agentid, String msgtype, String touser, String image){
         setAgentid(agentid);
         setMsgtype(msgtype);
         setTouser(touser);

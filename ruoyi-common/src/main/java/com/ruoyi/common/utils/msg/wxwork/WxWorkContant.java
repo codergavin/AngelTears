@@ -21,6 +21,10 @@ public class WxWorkContant {
     public static String WXWORK_URL_GETTOKEN = WXWORK_URL_BASE + "/gettoken?corpid=%s&corpsecret=%s";
     // 发送消息
     public static String WXWORK_URL_SEND_MESSAGE = WXWORK_URL_BASE + "/message/send?access_token=%s";
+    // 发送群消息
+    public static String WXWORK_URL_SEND_GROUP_MESSAGE = WXWORK_URL_BASE + "/appchat/send?access_token=%s";
+    // 群创建
+    public static String WXWORK_URL_GROUP_CREATE = WXWORK_URL_BASE + "/appchat/create?access_token=%s";
     //上传临时素材
     public static String WXWORK_URL_MEDIA_UPLOAD = WXWORK_URL_BASE + "/media/upload?access_token=%s&type=%s";
 

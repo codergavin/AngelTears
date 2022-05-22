@@ -2,10 +2,10 @@ package com.ruoyi.common.utils.msg.wxwork;
 
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
-import com.ruoyi.common.utils.msg.wxwork.entity.WxFileMsg;
-import com.ruoyi.common.utils.msg.wxwork.entity.WxImageMsg;
-import com.ruoyi.common.utils.msg.wxwork.entity.WxTextCardMsg;
-import com.ruoyi.common.utils.msg.wxwork.entity.WxTextMessage;
+import com.ruoyi.common.utils.msg.wxwork.entity.msg.WxWorkFileMsg;
+import com.ruoyi.common.utils.msg.wxwork.entity.msg.WxWorkImageMsg;
+import com.ruoyi.common.utils.msg.wxwork.entity.msg.WxWorkTextCardMsg;
+import com.ruoyi.common.utils.msg.wxwork.entity.msg.WxWorkTextMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,8 +21,8 @@ import java.util.Map;
  * @date 2022/5/21 15:54
  * @desc
  */
-public class WxWorkUtil {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WxWorkUtil.class);
+public class WxWorkSendMsgUtil {
+    private static final Logger LOGGER = LoggerFactory.getLogger(WxWorkSendMsgUtil.class);
 
     public static void main(String[] args) {
 
@@ -51,7 +51,7 @@ public class WxWorkUtil {
      */
     public static String sendTextMessage(String userIds,String message) {
         String accessToken = getAccessToken();
-        WxTextMessage wxMessage = new WxTextMessage(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_TEXT,userIds,message);
+        WxWorkTextMessage wxMessage = new WxWorkTextMessage(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_TEXT,userIds,message);
 
         return sendMessage(accessToken,JSON.toJSONString(wxMessage));
     }
@@ -90,7 +90,7 @@ public class WxWorkUtil {
      * @return
      */
     private static String sendImageMessageBase(String accessToken,String userIds,String mediaId) {
-        WxImageMsg wxImageMsg = new WxImageMsg(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_IMAGE,userIds,mediaId);
+        WxWorkImageMsg wxImageMsg = new WxWorkImageMsg(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_IMAGE,userIds,mediaId);
 
         return sendMessage(accessToken,JSON.toJSONString(wxImageMsg));
     }
@@ -129,9 +129,9 @@ public class WxWorkUtil {
      * @return
      */
     private static String sendFileMessageBase(String accessToken,String userIds,String mediaId) {
-        WxFileMsg wxFileMsg = new WxFileMsg(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_FILE,userIds,mediaId);
+        WxWorkFileMsg wxWorkFileMsg = new WxWorkFileMsg(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_FILE,userIds,mediaId);
 
-        return sendMessage(accessToken,JSON.toJSONString(wxFileMsg));
+        return sendMessage(accessToken,JSON.toJSONString(wxWorkFileMsg));
     }
 
 
@@ -143,14 +143,14 @@ public class WxWorkUtil {
      */
     public static String sendTextCardMessage(String userIds,String message) {
         String accessToken = getAccessToken();
-        WxTextCardMsg wxTextCardMsg = new WxTextCardMsg(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_TEXTCARD,userIds,message);
+        WxWorkTextCardMsg wxTextCardMsg = new WxWorkTextCardMsg(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_TEXTCARD,userIds,message);
 
         return sendMessage(accessToken,JSON.toJSONString(wxTextCardMsg));
     }
 
     public static String sendTextCardMessage(String userIds,String titile,String description,String url,String btntxt) {
         String accessToken = getAccessToken();
-        WxTextCardMsg wxTextCardMsg = new WxTextCardMsg(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_TEXTCARD,userIds,titile,description,url,btntxt);
+        WxWorkTextCardMsg wxTextCardMsg = new WxWorkTextCardMsg(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_TEXTCARD,userIds,titile,description,url,btntxt);
 
         return sendMessage(accessToken,JSON.toJSONString(wxTextCardMsg));
     }
@@ -346,10 +346,20 @@ public class WxWorkUtil {
     private static String sendMessage(String accessToken,String message) {
         String resp = HttpUtil.post(String.format(WxWorkContant.WXWORK_URL_SEND_MESSAGE,accessToken),message);
 
+        return buildResponseStr(resp,message);
+    }
+
+    /**
+     * 处理返回结果
+     * @param resp response
+     * @return
+     */
+    public static String buildResponseStr(String resp,String message) {
         Map<String, Object> map = JSON.parseObject(resp,Map.class);
         if (!"ok".equals(map.get("errmsg").toString())) {
-            LOGGER.error(String.format("发送失败的消息:%s，\n返回的结果%s。",JSON.toJSONString(message),resp));
+            LOGGER.error(String.format("请求失败的消息:%s，\n返回的结果%s。",JSON.toJSONString(message),resp));
         }
         return map.get("errmsg").toString();
     }
+
 }

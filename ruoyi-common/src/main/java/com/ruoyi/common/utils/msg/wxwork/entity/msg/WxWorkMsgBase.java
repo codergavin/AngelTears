@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.msg.wxwork.entity;
+package com.ruoyi.common.utils.msg.wxwork.entity.msg;
 
 /**
  * @author Gavin Li
@@ -7,7 +7,7 @@ package com.ruoyi.common.utils.msg.wxwork.entity;
  * @date 2022/5/21 23:10
  * @desc
  */
-public class WxMsgBase {
+public class WxWorkMsgBase {
     /**
      * 指定接收消息的成员，成员ID列表（多个接收者用‘|’分隔，最多支持1000个）。
      */
