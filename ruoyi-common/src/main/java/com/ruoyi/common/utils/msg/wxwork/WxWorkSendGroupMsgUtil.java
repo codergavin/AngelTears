@@ -3,7 +3,6 @@ package com.ruoyi.common.utils.msg.wxwork;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import com.ruoyi.common.utils.msg.wxwork.entity.group.*;
-import com.ruoyi.common.utils.msg.wxwork.entity.msg.WxWorkTextCardMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,8 +33,16 @@ public class WxWorkSendGroupMsgUtil {
 //        String result = sendGroupImageMessage("titanwindoctopustest00001","3rI-_S-KIDSfI70PU71Bz0dk50nE-m2LmtxHgRnYOAYEQf77dBlX5vWoSfIPvZTF9");
 //        String result = sendGroupImageMessageWithFile("titanwindoctopustest00001","D:\\server\\公司logo.png");
 //        String result = sendGroupFileMessageWithFile("titanwindoctopustest00001","D:\\server\\生产计划导入模板_f59cbb1b-0a58-4927-b2d5-d760d406402c.xlsx");
-        String result = sendGroupTextCardMessage("titanwindoctopustest00001","领奖通知","<div class=\"gray\">2022年5月20日</div> <div class=\"normal\">恭喜你们每人抽中iPhone 13一台，领奖码：SFHRTXFGDF</div><div class=\"highlight\">请于2022年10月1日前联系行政同事领取</div>",
-                "http://www.baidu.com","更多");
+        /*String result = sendGroupTextCardMessage("titanwindoctopustest00001","领奖通知","<div class=\"gray\">2022年5月20日</div> <div class=\"normal\">恭喜你们每人抽中iPhone 13一台，领奖码：SFHRTXFGDF</div><div class=\"highlight\">请于2022年10月1日前联系行政同事领取</div>",
+                "http://www.baidu.com","更多");*/
+//        String result = sendGroupTextMessage("titanwindoctopustest00001","标题：XXX评论了你的2022年5月的任务\n" +
+//                "内容：【通过业务流程完成交互体验设计】的评论为：这是一项测试。\n<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww049c50c431070203&redirect_uri=http%3A%2F%2Fokr.titanwind.com.cn%3A9091%2Fperformance%2F%23%2Flogin%2Fpub%2Fuser%2Flogin&response_type=code&scope=snsapi_base&state=STATE'>点此进入绩效系统</a>");
+        String result = sendGroupMarkdownMessage("titanwindoctopustest00001","`OTCA`新消息 \n" +
+                "                                >标题：XXX评论了你的2022年5月的任务 \n" +
+                "                                >内容：【通过业务流程完成交互体验设计】的评论为：这是一项测试。\n" +
+                "                                > \n" +
+                "                                >点击进入：[OTCA](https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww049c50c431070203&redirect_uri=http%3A%2F%2Fokr.titanwind.com.cn%3A9091%2Fperformance%2F%23%2Flogin%2Fpub%2Fuser%2Flogin&response_type=code&scope=snsapi_base&state=STATE)");
+
         System.out.println(result);
     }
 
@@ -122,6 +129,19 @@ public class WxWorkSendGroupMsgUtil {
     public static String sendGroupTextCardMessage(String chatId,String titile,String description,String url,String btntxt) {
         String accessToken = WxWorkSendMsgUtil.getAccessToken();
         WxWorkGroupTextCardMsg wxWorkGroupTextCardMsg = new WxWorkGroupTextCardMsg(chatId,WxWorkContant.WXWORK_MESSAGE_TYPE_TEXTCARD,titile,description,url,btntxt);
+
+        return sendGroupMessage(accessToken,JSON.toJSONString(wxWorkGroupTextCardMsg));
+    }
+
+    /**
+     * 发送markdown内容
+     * @param chatId
+     * @param message
+     * @return
+     */
+    public static String sendGroupMarkdownMessage(String chatId,String message) {
+        String accessToken = WxWorkSendMsgUtil.getAccessToken();
+        WxWorkMarkdownMsg wxWorkGroupTextCardMsg = new WxWorkMarkdownMsg(chatId,WxWorkContant.WXWORK_MESSAGE_TYPE_MARKDOWN,message);
 
         return sendGroupMessage(accessToken,JSON.toJSONString(wxWorkGroupTextCardMsg));
     }

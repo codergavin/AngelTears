@@ -2,10 +2,7 @@ package com.ruoyi.common.utils.msg.wxwork;
 
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
-import com.ruoyi.common.utils.msg.wxwork.entity.msg.WxWorkFileMsg;
-import com.ruoyi.common.utils.msg.wxwork.entity.msg.WxWorkImageMsg;
-import com.ruoyi.common.utils.msg.wxwork.entity.msg.WxWorkTextCardMsg;
-import com.ruoyi.common.utils.msg.wxwork.entity.msg.WxWorkTextMessage;
+import com.ruoyi.common.utils.msg.wxwork.entity.msg.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,8 +34,18 @@ public class WxWorkSendMsgUtil {
 //        String result = sendFileMessageWithFile("licheng","D:\\server\\生产计划导入模板_f59cbb1b-0a58-4927-b2d5-d760d406402c.xlsx");
 //        String result = sendFileMessage("licheng","3w4HubPgx-qxjwFroUz8bWlTLc_7ZxTAlvUsaWCxalXt05MH7F-E3qCZTaDlOlDFT");
 //        String result = sendFileMessageWithFile("licheng","D:\\server\\生产计划导入模板_f59cbb1b-0a58-4927-b2d5-d760d406402c.xlsx");
-        String result = sendTextCardMessage("licheng","领奖通知","<div class=\"gray\">2016年9月26日</div> <div class=\"normal\">恭喜你抽中iPhone 7一台，领奖码：xxxx</div><div class=\"highlight\">请于2016年10月10日前联系行政同事领取</div>",
-                "http://www.baidu.com","更多");
+//        String result = sendTextCardMessage("licheng","领奖通知","<div class=\"gray\">2016年9月26日</div> <div class=\"normal\">恭喜你抽中iPhone 7一台，领奖码：xxxx</div><div class=\"highlight\">请于2016年10月10日前联系行政同事领取</div>",
+//                "http://www.baidu.com","更多");
+//        String result = sendTextCardMessage("licheng","消息通知","<div class=\"gray\">2016年9月26日</div> <div class=\"normal\">恭喜你抽中iPhone 7一台，领奖码：xxxx</div><div class=\"highlight\">请于2016年10月10日前联系行政同事领取</div>",
+//                "https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww049c50c431070203&redirect_uri=http%3A%2F%2Fokr.titanwind.com.cn%3A9091%2Fperformance%2F%23%2Flogin%2Fpub%2Fuser%2Flogin&response_type=code&scope=snsapi_base&state=STATE","点击进入绩效系统");
+        String result = sendTextMessage("licheng","标题：XXX评论了你的2022年5月的任务\n" +
+                "内容：【通过业务流程完成交互体验设计】的评论为：这是一项测试。\n<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww049c50c431070203&redirect_uri=http%3A%2F%2Fokr.titanwind.com.cn%3A9091%2Fperformance%2F%23%2Flogin%2Fpub%2Fuser%2Flogin&response_type=code&scope=snsapi_base&state=STATE\">点此进入绩效系统</a>");
+        /*String result = sendMarkDownMessage("licheng","`OTCA`新消息 \n" +
+                "                                >标题：XXX评论了你的2022年5月的任务 \n" +
+                "                                >内容：【通过业务流程完成交互体验设计】的评论为：这是一项测试。\n" +
+                "                                > \n" +
+                "                                >点击进入：[OTCA](https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww049c50c431070203&redirect_uri=http%3A%2F%2Fokr.titanwind.com.cn%3A9091%2Fperformance%2F%23%2Flogin%2Fpub%2Fuser%2Flogin&response_type=code&scope=snsapi_base&state=STATE)");
+*/
         System.out.println(result);
     }
 
@@ -153,6 +160,19 @@ public class WxWorkSendMsgUtil {
         WxWorkTextCardMsg wxTextCardMsg = new WxWorkTextCardMsg(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_TEXTCARD,userIds,titile,description,url,btntxt);
 
         return sendMessage(accessToken,JSON.toJSONString(wxTextCardMsg));
+    }
+
+    /**
+     * 发送markdown消息
+     * @param userIds
+     * @param message
+     * @return
+     */
+    public static String sendMarkDownMessage(String userIds,String message) {
+        String accessToken = getAccessToken();
+        WxWorkMarkdownMsg wxWorkMarkdownMsg = new WxWorkMarkdownMsg(WxWorkContant.WXWORK_APP_ID_INT,WxWorkContant.WXWORK_MESSAGE_TYPE_MARKDOWN,userIds,message);
+
+        return sendMessage(accessToken,JSON.toJSONString(wxWorkMarkdownMsg));
     }
 
     /**
