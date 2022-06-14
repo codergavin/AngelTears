@@ -38,14 +38,18 @@ public class WxWorkSendMsgUtil {
 //                "http://www.baidu.com","更多");
 //        String result = sendTextCardMessage("licheng","消息通知","<div class=\"gray\">2016年9月26日</div> <div class=\"normal\">恭喜你抽中iPhone 7一台，领奖码：xxxx</div><div class=\"highlight\">请于2016年10月10日前联系行政同事领取</div>",
 //                "https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww049c50c431070203&redirect_uri=http%3A%2F%2Fokr.titanwind.com.cn%3A9091%2Fperformance%2F%23%2Flogin%2Fpub%2Fuser%2Flogin&response_type=code&scope=snsapi_base&state=STATE","点击进入绩效系统");
-        String result = sendTextMessage("licheng","标题：XXX评论了你的2022年5月的任务\n" +
-                "内容：【通过业务流程完成交互体验设计】的评论为：这是一项测试。\n<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww049c50c431070203&redirect_uri=http%3A%2F%2Fokr.titanwind.com.cn%3A9091%2Fperformance%2F%23%2Flogin%2Fpub%2Fuser%2Flogin&response_type=code&scope=snsapi_base&state=STATE\">点此进入绩效系统</a>");
+//        String result = sendTextMessage("licheng","标题：XXX评论了你的2022年5月的任务\n" +
+//                "内容：【通过业务流程完成交互体验设计】的评论为：这是一项测试。\n<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww049c50c431070203&redirect_uri=http%3A%2F%2Fokr.titanwind.com.cn%3A9091%2Fperformance%2F%23%2Flogin%2Fpub%2Fuser%2Flogin&response_type=code&scope=snsapi_base&state=STATE\">点此进入绩效系统</a>");
         /*String result = sendMarkDownMessage("licheng","`OTCA`新消息 \n" +
                 "                                >标题：XXX评论了你的2022年5月的任务 \n" +
                 "                                >内容：【通过业务流程完成交互体验设计】的评论为：这是一项测试。\n" +
                 "                                > \n" +
                 "                                >点击进入：[OTCA](https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww049c50c431070203&redirect_uri=http%3A%2F%2Fokr.titanwind.com.cn%3A9091%2Fperformance%2F%23%2Flogin%2Fpub%2Fuser%2Flogin&response_type=code&scope=snsapi_base&state=STATE)");
 */
+        /*String result = sendTextMessage("licheng","标题：XXX评论了你的2022年5月的任务\n" +
+                "内容：【通过业务流程完成交互体验设计】的评论为：这是一项测试。\n<a href=\"www.baidu.com\">点此进入绩效系统</a>");*/
+        String result = sendTextMessage("licheng","标题：这个是Thingworx的测试消息。\n<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww049c50c431070203&redirect_uri=http%3A%2F%2Fthingworxtest.titanwind.com.cn%3A8902%2FThingworx%2FRuntime%2Findex.html%23%23master%3DTiTan.Lic.Test.Master%26mashup%3DTiTan.Lic.Test.PersonManage.Mashup%26__applyThemeName%3DTiTan.Lic.StyleTheme&response_type=code&scope=snsapi_base&state=STATE\">点此进入绩效系统</a>");
+
         System.out.println(result);
     }
 

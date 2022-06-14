@@ -12,8 +12,7 @@ public class WeiChat {
         WeChatMsgSend swx = new WeChatMsgSend();
         try {
             String token = swx.getToken("ww19b1921d75b9a23d","f9iMFCTMqmVGOrvLaNxytGunHfMMZ9S0nJ-QC0a0Am0");
-            String postdata = swx.createpostdata("LiCheng", "text",
-                    1000002, "content","这是一条测试信息");
+            String postdata = swx.createpostdata("LiCheng", "text",1000002, "content","这是一条测试信息");
             String resp = swx.post("utf-8", WeChatMsgSend.CONTENT_TYPE,(new WeChatUrlData()).getSendMessage_Url(), postdata, token);
             System.out.println("获取到的token======>" + token);
             System.out.println("请求数据======>" + postdata);

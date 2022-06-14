@@ -141,4 +141,29 @@ public class WeChatMsgSend {
         LoggerFactory.getLogger(getClass()).info("call [{}], param:{}, resp:{}", url, data, resp);
         return resp;
     }
+
+
+    /**
+     * 发送get请求
+     * @param url
+     * @return
+     * @throws IOException
+     */
+    public String get(String url) throws IOException {
+        httpGet = new HttpGet(url);
+        CloseableHttpResponse response = httpClient.execute(httpGet);
+        String resp = "";
+
+        try {
+            HttpEntity entity = response.getEntity();
+            resp = EntityUtils.toString(entity, "utf-8");
+            EntityUtils.consume(entity);
+        } catch (Exception e) {
+            e.getStackTrace();
+        } finally {
+            response.close();
+        }
+        LoggerFactory.getLogger(getClass()).info(" resp:{}", resp);
+        return resp;
+    }
 }
