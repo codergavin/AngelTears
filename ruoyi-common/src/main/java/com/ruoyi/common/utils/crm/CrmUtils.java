@@ -46,6 +46,7 @@ public class CrmUtils {
         //项目
         Project  project = queryProjectInfo(token,"内蒙古锡林郭勒盟上都风电项目");
 //        System.out.println(project.toString());
+        System.out.println(JSON.toJSONString(project));
 //        Account account = queryAccountInfo(token,1690281230369429L);
 //        User user = queryUserInfo(token,1223141946737322L);
         //机型
@@ -81,7 +82,7 @@ public class CrmUtils {
             List<GlobalPickOption> countryOptionList = queryGlobalPicks(token,"country__c");
             Map<Integer,List<GlobalPickOption>> keyAndCountryOptionList = countryOptionList.stream().collect(Collectors.groupingBy(GlobalPickOption::getOptionCode));
             //项目位置-省份
-            List<GlobalPickOption> provinceoptionList = queryGlobalPicks(token,"province__c");
+            List<GlobalPickOption> provinceoptionList = queryGlobalPicks(token,"province");
             Map<Integer,List<GlobalPickOption>> keyAndProvinceoptionList = provinceoptionList.stream().collect(Collectors.groupingBy(GlobalPickOption::getOptionCode));
             if (changeList != null && changeList.size() > 0) {
                 Project project = changeList.get(0);
