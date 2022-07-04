@@ -1,12 +1,14 @@
 package com.ruoyi.common.utils.crm;
 
 import cn.hutool.http.HttpRequest;
-import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.ruoyi.common.utils.crm.entity.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,23 +21,22 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @group HummingBird
  * @date 2022/6/30 15:40
- * @desc
+ * @desc MSO工具类型
  */
-public class CrmUtils {
+public class MsoUtils {
 
-    // 认证类型；此参数的值必须为 password。(不需要变动)
+    private static Logger LOGGER = LoggerFactory.getLogger("GenerateQuartz");
+
+    // 认证类型；
     public static String GRANT_TYPE = "password";
-    // 客户端 ID ；您的集成连接器详情中的 client_id。(不需要变动)
+    // 客户端 ID ；
     public static String CLIENT_ID = "cd7abd50bc1fc6f722445ccae5068eb9";
-    // 客户端秘钥；您的集成连接器详情中的 client_secret。(不需要变动)
+    // 客户端秘钥；
     public static String CLIENT_SECRET = "ea6afd63c512c0c21390fa2942b68960";
-    // 回调地址；您的集成连接器中注册的 redirect_uri。(不需要变动)
+    // 回调地址；
     public static String REDIRECT_URI = "https://api-tencent.xiaoshouyi.com";
-    // 登录用户名
     public static String USERNAME = "it.service@titanwind.com.cn";
-    // 用户在销售易系统中的账号密码
     public static String PASSWORD = "Ts@1234567897KzytJYP";
-    // 基础地址
     public static String BASE_URL = "https://api-tencent.xiaoshouyi.com";
 
     public static void main(String[] args) {
@@ -43,10 +44,11 @@ public class CrmUtils {
         System.out.println(token);
 //        String project = queryProjectInfo(token,0,10);
 //        System.out.println(project);
-        //项目
-        Project  project = queryProjectInfo(token,"内蒙古锡林郭勒盟上都风电项目");
+        //项目 - "内蒙古锡林郭勒盟上都风电项目"
+//        Project  project = queryProjectInfo(token,"内蒙古锡林郭勒盟上都风电项目");
+        Project  project = queryProjectInfo(token,"乌兰察布兴和县500MW风电项目");
 //        System.out.println(project.toString());
-        System.out.println(JSON.toJSONString(project));
+        LOGGER.info(JSON.toJSONString(project, SerializerFeature.WriteMapNullValue));
 //        Account account = queryAccountInfo(token,1690281230369429L);
 //        User user = queryUserInfo(token,1223141946737322L);
         //机型
@@ -61,7 +63,7 @@ public class CrmUtils {
 //        queryContractInfo(token,0,10);
         // 合同交付批次
         // List<ContractDeliveryPlan> planList = queryContractDeliveryPlanInfo(token,"1378873187517167",0,10);
-        System.out.println("操作完成");
+        LOGGER.info("操作完成");
     }
 
     /**
@@ -73,7 +75,7 @@ public class CrmUtils {
         String url = BASE_URL + String.format("/rest/data/v2/query?q=select id,opportunityName,accountId,tower_machine__c,set_qty__c,tower_2__c__c,tower_2_qty__c,tower_3__c,tower_3_qty__c," +
                 "tower_4__c,tower_4_qty__c,follower__c,country__c,province__c,address__c  from opportunity where opportunityName = \'%s\'  limit 0,20",projectName ) ;
         String result = HttpRequest.get(url).header("Authorization", token).execute().body();
-        System.out.println(result);
+        LOGGER.info(result);
         Result resultClass = JSON.parseObject(result, Result.class);
         if (resultClass != null && resultClass.getCode().intValue() == 200) {
             ResultRecords resultRecordsClass = JSON.parseObject(resultClass.getResult(), ResultRecords.class);
@@ -133,7 +135,7 @@ public class CrmUtils {
                 return project;
             }
         } else {
-            System.out.println(String.format("访问出错，请排查问题。返回结果：%s",result));
+            LOGGER.error(String.format("访问出错，请排查问题。返回结果：%s",result));
             return null;
         }
         return null;
@@ -149,7 +151,7 @@ public class CrmUtils {
         List<Project> resultList = new ArrayList<>();
         String url = BASE_URL + String.format("/rest/data/v2/query?q=select id,name  from prod_model__c where id =%s   limit 0,1", modelId) ;
         String result = HttpRequest.get(url).header("Authorization", token).execute().body();
-        System.out.println(result);
+        LOGGER.info(result);
         Result resultClass = JSON.parseObject(result, Result.class);
         if (resultClass != null && resultClass.getCode().intValue() == 200) {
             ResultRecords resultRecordsClass = JSON.parseObject(resultClass.getResult(), ResultRecords.class);
@@ -158,7 +160,7 @@ public class CrmUtils {
                 return changeList.get(0);
             }
         } else {
-            System.out.println(String.format("访问出错，请排查问题。返回结果：%s",result));
+            LOGGER.error(String.format("访问出错，请排查问题。返回结果：%s",result));
             return null;
         }
         return null;
@@ -173,7 +175,7 @@ public class CrmUtils {
         List<Account> resultList = new ArrayList<>();
         String url = BASE_URL + String.format("/rest/data/v2/query?q=select id,accountName  from account where id = %s limit 0,1",String.valueOf(accountId)) ;
         String result = HttpRequest.get(url).header("Authorization", token).execute().body();
-        System.out.println(result);
+        LOGGER.info(result);
         Result resultClass = JSON.parseObject(result, Result.class);
         if (resultClass != null && resultClass.getCode().intValue() == 200) {
             ResultRecords resultRecordsClass = JSON.parseObject(resultClass.getResult(), ResultRecords.class);
@@ -182,7 +184,7 @@ public class CrmUtils {
                 return changeList.get(0);
             }
         } else {
-            System.out.println(String.format("访问出错，请排查问题。返回结果：%s",result));
+            LOGGER.error(String.format("访问出错，请排查问题。返回结果：%s",result));
             return null;
         }
         return null;
@@ -197,7 +199,7 @@ public class CrmUtils {
         List<User> resultList = new ArrayList<>();
         String url = BASE_URL + String.format("/rest/data/v2/query?q=select id,name  from user where id = %s limit 0,1",String.valueOf(userId)) ;
         String result = HttpRequest.get(url).header("Authorization", token).execute().body();
-        System.out.println(result);
+        LOGGER.info(result);
         Result resultClass = JSON.parseObject(result, Result.class);
         if (resultClass != null && resultClass.getCode().intValue() == 200) {
             ResultRecords resultRecordsClass = JSON.parseObject(resultClass.getResult(), ResultRecords.class);
@@ -206,7 +208,7 @@ public class CrmUtils {
                 return changeList.get(0);
             }
         } else {
-            System.out.println(String.format("访问出错，请排查问题。返回结果：%s",result));
+            LOGGER.error(String.format("访问出错，请排查问题。返回结果：%s",result));
             return null;
         }
         return null;
@@ -221,7 +223,7 @@ public class CrmUtils {
         List<Contract> resultList = new ArrayList<>();
         String url = BASE_URL + String.format("/rest/data/v2/query?q=select id,opportunityId,title,price_term__c,del_addr__c  from contract where opportunityId = %s ",String.valueOf(projectId)) ;
         String result = HttpRequest.get(url).header("Authorization", token).execute().body();
-        System.out.println(result);
+        LOGGER.info(result);
         Result resultClass = JSON.parseObject(result, Result.class);
         if (resultClass != null && resultClass.getCode().intValue() == 200) {
             List<GlobalPickOption> optionList = queryGlobalPicks(token,"price_term__c");
@@ -235,7 +237,7 @@ public class CrmUtils {
             }
             resultList.addAll(changeList);
         } else {
-            System.out.println(String.format("访问出错，请排查问题。返回结果：%s",result));
+            LOGGER.error(String.format("访问出错，请排查问题。返回结果：%s",result));
             return null;
         }
         return resultList;
@@ -256,17 +258,17 @@ public class CrmUtils {
         List<ContractDeliveryPlan> resultList = new ArrayList<>();
         String url = BASE_URL + String.format("/rest/data/v2/query?q=select id,set_qty__c,bat_deliv_date__c,customItem5__c  from customEntity20__c where customItem5__c = %s ",String.valueOf(contract)) ;
         String result = HttpRequest.get(url).header("Authorization", token).execute().body();
-        System.out.println(result);
+        LOGGER.info(result);
         Result resultClass = JSON.parseObject(result, Result.class);
         if (resultClass != null && resultClass.getCode().intValue() == 200) {
             ResultRecords resultRecordsClass = JSON.parseObject(resultClass.getResult(), ResultRecords.class);
             List<ContractDeliveryPlan> contractDeliveryPlanList = JSON.parseObject(resultRecordsClass.getRecords(),new TypeReference<List<ContractDeliveryPlan>>(){});
             /*for (ContractDeliveryPlan plan : contractDeliveryPlanList) {
-                System.out.println(plan.toString());
+                LOGGER.info(plan.toString());
             }*/
             resultList.addAll(contractDeliveryPlanList);
         } else {
-            System.out.println(String.format("访问出错，请排查问题。返回结果：%s",result));
+            LOGGER.error(String.format("访问出错，请排查问题。返回结果：%s",result));
             return null;
         }
         return resultList;
@@ -284,7 +286,7 @@ public class CrmUtils {
         List<GlobalPickOption> resultList = new ArrayList<>();
         String url = BASE_URL + String.format("/rest/metadata/v2.0/settings/globalPicks/%s",apiKey) ;
         String result = HttpRequest.get(url).header("Authorization", token).execute().body();
-        System.out.println(result);
+        LOGGER.info(result);
         Result resultClass = JSON.parseObject(result, Result.class);
         if (resultClass != null && resultClass.getCode().intValue() == 0) {
             ResultRecords resultRecordsClass = JSON.parseObject(resultClass.getData(), ResultRecords.class);
@@ -292,7 +294,7 @@ public class CrmUtils {
             List<GlobalPickOption> changeList = JSON.parseObject(optionRecord.getPickOption(),new TypeReference<List<GlobalPickOption>>(){});
             resultList.addAll(changeList);
         } else {
-            System.out.println(String.format("访问出错，请排查问题。返回结果：%s",result));
+            LOGGER.error(String.format("访问出错，请排查问题。返回结果：%s",result));
             return null;
         }
 
@@ -313,7 +315,7 @@ public class CrmUtils {
         paramMap.put("password",PASSWORD);
         String url = BASE_URL + "/oauth2/token";
         String result = HttpRequest.post(url).header("content-type", "application/x-www-form-urlencoded").form(paramMap).execute().body();
-        System.out.println(String.format("响应结果：%s",result));
+        LOGGER.info(String.format("响应结果：%s",result));
         JSONObject jsonObject = JSONUtil.parseObj(result);
         String token = String.format("%s %s",jsonObject.getStr("token_type"),jsonObject.getStr("access_token"));
         return token;
