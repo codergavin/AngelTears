@@ -1,13 +1,13 @@
-package com.ruoyi.common.utils.crm.entity;
+package com.ruoyi.common.utils.meo.entity;
 
 /**
  * @author Gavin Li
  * @version 1.0
  * @group HummingBird
- * @date 2022/7/1 18:14
- * @desc 用户
+ * @date 2022/7/1 18:40
+ * @desc 机型
  */
-public class User {
+public class Model {
     private Long id;
     private String name;
 
@@ -29,7 +29,7 @@ public class User {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("User{");
+        final StringBuilder sb = new StringBuilder("Model{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append('}');

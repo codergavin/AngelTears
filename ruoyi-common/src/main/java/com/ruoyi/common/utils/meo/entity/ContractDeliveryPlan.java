@@ -1,6 +1,4 @@
-package com.ruoyi.common.utils.crm.entity;
-
-import java.util.Date;
+package com.ruoyi.common.utils.meo.entity;
 
 /**
  * @author Gavin Li

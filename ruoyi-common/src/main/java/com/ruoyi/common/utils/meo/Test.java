@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.crm;
+package com.ruoyi.common.utils.meo;
 
 /**
  * @author Gavin Li

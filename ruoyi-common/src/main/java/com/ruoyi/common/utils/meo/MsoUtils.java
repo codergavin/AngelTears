@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.crm;
+package com.ruoyi.common.utils.meo;
 
 import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONObject;
@@ -6,7 +6,7 @@ import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.ruoyi.common.utils.crm.entity.*;
+import com.ruoyi.common.utils.meo.entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
