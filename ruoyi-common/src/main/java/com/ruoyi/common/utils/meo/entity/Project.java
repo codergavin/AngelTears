@@ -16,6 +16,8 @@ public class Project {
     //客户名称
     private Long accountId;
     private String accountName;
+
+    private String proj_num__c;
     //塔筒机型1
     private Long tower_machine__c;
     private String tower_machine__c_str;
@@ -243,6 +245,15 @@ public class Project {
         this.contractList = contractList;
     }
 
+    public String getProj_num__c() {
+        return proj_num__c;
+    }
+
+    public void setProj_num__c(String proj_num__c) {
+        this.proj_num__c = proj_num__c;
+    }
+
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Project{");
@@ -250,6 +261,7 @@ public class Project {
         sb.append(", opportunityName='").append(opportunityName).append('\'');
         sb.append(", accountId=").append(accountId);
         sb.append(", accountName='").append(accountName).append('\'');
+        sb.append(", proj_num__c='").append(proj_num__c).append('\'');
         sb.append(", tower_machine__c=").append(tower_machine__c);
         sb.append(", tower_machine__c_str='").append(tower_machine__c_str).append('\'');
         sb.append(", set_qty__c=").append(set_qty__c);

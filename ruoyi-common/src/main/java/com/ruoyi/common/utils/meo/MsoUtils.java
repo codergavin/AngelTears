@@ -45,8 +45,8 @@ public class MsoUtils {
 //        String project = queryProjectInfo(token,0,10);
 //        System.out.println(project);
         //项目 - "内蒙古锡林郭勒盟上都风电项目"
-//        Project  project = queryProjectInfo(token,"内蒙古锡林郭勒盟上都风电项目");
-        Project  project = queryProjectInfo(token,"乌兰察布兴和县500MW风电项目");
+        Project  project = queryProjectInfo(token,"内蒙古锡林郭勒盟上都风电项目");
+//        Project  project = queryProjectInfo(token,"乌兰察布兴和县500MW风电项目");
 //        System.out.println(project.toString());
         LOGGER.info(JSON.toJSONString(project, SerializerFeature.WriteMapNullValue));
 //        Account account = queryAccountInfo(token,1690281230369429L);
@@ -72,7 +72,7 @@ public class MsoUtils {
      * @return
      */
     public static Project queryProjectInfo(String token,String projectName) {
-        String url = BASE_URL + String.format("/rest/data/v2/query?q=select id,opportunityName,accountId,tower_machine__c,set_qty__c,tower_2__c__c,tower_2_qty__c,tower_3__c,tower_3_qty__c," +
+        String url = BASE_URL + String.format("/rest/data/v2/query?q=select id,opportunityName,accountId,proj_num__c,tower_machine__c,set_qty__c,tower_2__c__c,tower_2_qty__c,tower_3__c,tower_3_qty__c," +
                 "tower_4__c,tower_4_qty__c,follower__c,country__c,province__c,address__c  from opportunity where opportunityName = \'%s\'  limit 0,20",projectName ) ;
         String result = HttpRequest.get(url).header("Authorization", token).execute().body();
         LOGGER.info(result);
