@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  */
 public class MsoUtils {
 
-    private static Logger LOGGER = LoggerFactory.getLogger("GenerateQuartz");
+    private static Logger LOGGER = LoggerFactory.getLogger("MsoUtils");
 
     // 认证类型；
     public static String GRANT_TYPE = "password";

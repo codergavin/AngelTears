@@ -9,6 +9,36 @@ package com.ruoyi.common.utils.meo;
  */
 public class Test {
     public static void main(String[] args) {
-        String json = "{\"code\":200,\"msg\":\"OK\",\"ext\":[],\"result\":{\"totalSize\":623,\"count\":10,\"records\":[{\"bat_num__c\":1,\"set_qty__c\":15.0,\"bat_deliv_date__c\":1612627200000,\"desc__c\":\"1\",\"customItem5__c\":1378873187517167},{\"bat_num__c\":1,\"set_qty__c\":7.0,\"bat_deliv_date__c\":1604073600000,\"desc__c\":null,\"customItem5__c\":1382051891086021},{\"bat_num__c\":2,\"set_qty__c\":7.0,\"bat_deliv_date__c\":1612022400000,\"desc__c\":null,\"customItem5__c\":1382051891086021},{\"bat_num__c\":3,\"set_qty__c\":7.0,\"bat_deliv_date__c\":1617120000000,\"desc__c\":null,\"customItem5__c\":1382051891086021},{\"bat_num__c\":4,\"set_qty__c\":7.0,\"bat_deliv_date__c\":1619712000000,\"desc__c\":null,\"customItem5__c\":1382051891086021},{\"bat_num__c\":5,\"set_qty__c\":5.0,\"bat_deliv_date__c\":1621440000000,\"desc__c\":null,\"customItem5__c\":1382051891086021},{\"bat_num__c\":1,\"set_qty__c\":7.0,\"bat_deliv_date__c\":1604073600000,\"desc__c\":null,\"customItem5__c\":1382101516223211},{\"bat_num__c\":2,\"set_qty__c\":7.0,\"bat_deliv_date__c\":1612022400000,\"desc__c\":null,\"customItem5__c\":1382101516223211},{\"bat_num__c\":3,\"set_qty__c\":7.0,\"bat_deliv_date__c\":1617120000000,\"desc__c\":null,\"customItem5__c\":1382101516223211},{\"bat_num__c\":4,\"set_qty__c\":7.0,\"bat_deliv_date__c\":1619712000000,\"desc__c\":null,\"customItem5__c\":1382101516223211}]}}";
+        System.out.println("-12 : " + diff(-12));
+        System.out.println("-11 : " + diff(-11));
+        System.out.println("-10 : " + diff(-10));
+        System.out.println("-9 : " + diff(-9));
+        System.out.println("-8 : " + diff(-8));
+        System.out.println("-7 : " + diff(-7));
+        System.out.println("-6 : " + diff(-6));
+        System.out.println("-5 : " + diff(-5));
+        System.out.println("-4 : " + diff(-4));
+        System.out.println("-3 : " + diff(-3));
+        System.out.println("-2 : " + diff(-2));
+        System.out.println("-1 : " + diff(-1));
+        System.out.println("-0 : " + diff(-0));
+        System.out.println("1 : " + diff(1));
+        System.out.println("2 : " + diff(2));
+        System.out.println("3 : " + diff(3));
+        System.out.println("4 : " + diff(4));
+        System.out.println("5 : " + diff(5));
+        System.out.println("6 : " + diff(6));
+        System.out.println("7 : " + diff(7));
+        System.out.println("8 : " + diff(8));
+        System.out.println("9 : " + diff(9));
+        System.out.println("10 : " + diff(10));
+        System.out.println("11 : " + diff(11));
+        System.out.println("12 : " + diff(12));
+
+
+    }
+
+    public static int diff(int diffX) {
+        return 	diffX < -8 ? -3 : diffX < -4 ? -2 : diffX < -1 ? -1: diffX < 1 ? 0 : diffX < 4 ? 1 : diffX < 8 ? 2 : 3;
     }
 }
