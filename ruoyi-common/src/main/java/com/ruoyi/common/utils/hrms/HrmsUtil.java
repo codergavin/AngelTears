@@ -1,8 +1,8 @@
 package com.ruoyi.common.utils.hrms;
 
 import cn.hutool.http.HttpUtil;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.TypeReference;
 import com.ruoyi.common.utils.hrms.entity.*;
 import com.ruoyi.common.utils.meo.entity.ContractDeliveryPlan;
 import com.ruoyi.common.utils.meo.entity.Result;

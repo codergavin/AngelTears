@@ -1,7 +1,7 @@
 package com.ruoyi.common.utils.msg.wxwork;
 
 import cn.hutool.http.HttpUtil;
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import com.ruoyi.common.utils.msg.wxwork.entity.group.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

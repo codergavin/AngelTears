@@ -3,9 +3,9 @@ package com.ruoyi.common.utils.meo;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONWriter;
+import com.alibaba.fastjson2.TypeReference;
 import com.ruoyi.common.utils.meo.entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,7 @@ public class MsoUtils {
         Project  project = queryProjectInfo(token,"内蒙古锡林郭勒盟上都风电项目");
 //        Project  project = queryProjectInfo(token,"乌兰察布兴和县500MW风电项目");
 //        System.out.println(project.toString());
-        LOGGER.info(JSON.toJSONString(project, SerializerFeature.WriteMapNullValue));
+        LOGGER.info(JSON.toJSONString(project, JSONWriter.Feature.WriteMapNullValue));
 //        Account account = queryAccountInfo(token,1690281230369429L);
 //        User user = queryUserInfo(token,1223141946737322L);
         //机型
